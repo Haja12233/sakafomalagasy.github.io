@@ -1,0 +1,522 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contact | Sakafo Malagasy</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDqZz7T2dEeQ3IY0XeYk1z4JvGv8jK7fF4&callback=initMap" async defer></script>
+  <style>
+    .cuisine-pattern {
+    background-image: url('https://voyage-madagascar.org/wp-content/uploads/la-cuisine-malgache-1024x671.jpg');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+  }
+    .map-container {
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
+    }
+    .contact-card {
+      transition: all 0.3s ease;
+      border-left: 4px solid transparent;
+    }
+    .contact-card:hover {
+      transform: translateY(-5px);
+      border-left-color: #F59E0B;
+      box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+    }
+    .floating-label {
+      position: absolute;
+      top: 50%;
+      left: 1rem;
+      transform: translateY(-50%);
+      transition: all 0.3s ease;
+      pointer-events: none;
+      color: #6b7280;
+    }
+    .input-field:focus + .floating-label,
+    .input-field:not(:placeholder-shown) + .floating-label {
+      top: -10px;
+      left: 0.75rem;
+      background: white;
+      padding: 0 0.5rem;
+      font-size: 0.75rem;
+      color: #F59E0B;
+    }
+    .input-field:focus {
+      border-color: #F59E0B;
+    }
+  </style>
+</head>
+<body class="bg-gray-50 text-gray-800 font-sans">
+
+  <!-- Barre de navigation -->
+  <nav class="bg-white shadow-md sticky top-0 z-50">
+    <div class="container mx-auto px-6 py-3">
+      <div class="flex justify-between items-center">
+        <!-- Logo -->
+        <div class="flex items-center space-x-2">
+          <div class="relative">
+            <svg class="h-10 w-10 rounded-full border-2 border-amber-600 p-1">
+              <circle cx="20" cy="20" r="18" fill="#F59E0B" />
+              <text x="20" y="25" text-anchor="middle" fill="white" font-family="Arial" font-size="14">MS</text>
+            </svg>
+          </div>
+          <span class="text-xl font-bold text-amber-600">Sakafo Malagasy</span>
+        </div>
+        
+        <!-- Navigation pour desktop -->
+        <div class="hidden md:flex items-center space-x-8">
+          <a href="./Sakafo.html" class="nav-item text-gray-700 hover:text-amber-600 transition">Accueil</a>
+          <a href="#recettes" class="nav-item text-gray-700 hover:text-amber-600 transition">Recettes</a>
+          <a href="./apropos.html" class="nav-item text-gray-700 hover:text-amber-600 transition">À propos</a>
+          <a href="#contact" class="nav-item text-amber-600 font-semibold transition">Contact</a>
+          <button class="bg-amber-600 text-white px-4 py-2 rounded-md hover:bg-amber-700 transition animate-pulse">
+            <i class="fas fa-book-open mr-2"></i>Explorer
+          </button>
+        </div>
+        
+        <!-- Menu mobile -->
+        <div class="md:hidden">
+          <button id="mobile-menu-button" class="text-gray-700 focus:outline-none">
+            <i class="fas fa-bars text-2xl"></i>
+          </button>
+        </div>
+      </div>
+      
+      <!-- Menu mobile dropdown -->
+      <div id="mobile-menu" class="hidden md:hidden mt-4 pb-4">
+        <a href="./Sakafo.html" class="block py-2 text-gray-700 hover:text-amber-600">Accueil</a>
+        <a href="#recettes" class="block py-2 text-gray-700 hover:text-amber-600">Recettes</a>
+        <a href="./apropos.html" class="block py-2 text-gray-700 hover:text-amber-600">À propos</a>
+        <a href="./contact.html" class="block py-2 text-amber-600 font-semibold">Contact</a>
+        <button class="mt-2 bg-amber-600 text-white px-4 py-2 rounded-md w-full hover:bg-amber-700">
+          Explorer
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <section class="py-20 bg-gradient-to-r from-amber-50 to-yellow-50 cuisine-pattern">
+    <div class="container mx-auto px-6">
+      <div class="max-w-5xl mx-auto text-center bg-white bg-opacity-70 p-8 rounded-lg">
+        <h1 class="text-4xl md:text-5xl font-extrabold text-amber-800 mb-4">
+          <span class="block">Contactez Sakafo Malagasy</span>
+          <span class="text-amber-600">Partageons notre passion culinaire</span>
+        </h1>
+        <p class="text-xl text-gray-700 mb-8 max-w-2xl mx-auto">
+          Nous sommes ravis de partager avec vous les saveurs authentiques de Madagascar. Posez vos questions, partagez vos expériences ou réservez votre visite.
+        </p>
+        <div class="flex justify-center space-x-4">
+          <a href="#contact-form" class="bg-amber-600 text-white px-6 py-3 rounded-lg hover:bg-amber-700 transition shadow-lg">
+            <i class="fas fa-envelope mr-2"></i>Envoyer un message
+          </a>
+          <a href="#map" class="bg-white text-amber-600 border-2 border-amber-600 px-6 py-3 rounded-lg hover:bg-amber-50 transition">
+            <i class="fas fa-map-marker-alt mr-2"></i>Voir notre localisation
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section Cuisine Malgache -->
+  <section class="py-16 bg-white">
+    <div class="container mx-auto px-6">
+      <div class="max-w-5xl mx-auto">
+        <div class="text-center mb-16">
+          <span class="inline-block px-4 py-1 bg-amber-100 text-amber-600 rounded-full text-sm font-semibold mb-3">
+            Notre passion
+          </span>
+          <h2 class="text-4xl font-extrabold text-gray-900 mb-4">
+            La cuisine malgache : un art de vivre
+          </h2>
+          <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+            Découvrez les saveurs authentiques qui font la richesse de notre culture
+          </p>
+        </div>
+
+        <div class="flex flex-col md:flex-row gap-10 items-center">
+        <div class="md:w-1/2">
+          <div class="bg-gray-200 border-2 border-dashed rounded-xl w-full h-96 flex items-center justify-center overflow-hidden">
+            <img src="https://www.voyage-madagascar.be/wp-content/uploads/2023/05/la-cuisine-malgache-aux-1000-saveurs-1024x576.jpg" alt="Plats traditionnels malgaches" class="object-cover w-full h-full rounded-xl" />
+          </div>
+        </div>
+        
+        <div class="md:w-1/2">
+          <p class="text-gray-700 mb-6 text-lg">
+            La cuisine malgache, ou "sakafo Malagasy", est bien plus qu'une simple alimentation. C'est un véritable art de vivre qui reflète la diversité culturelle et géographique de Madagascar. Au cœur de cette cuisine se trouve le riz ("vary"), véritable pilier de l'alimentation, accompagné de "loaka" (accompagnements) qui varient selon les régions et les saisons.
+          </p>
+          
+          <div class="grid grid-cols-2 gap-4 mb-6">
+            <div class="bg-amber-50 p-4 rounded-lg">
+              <div class="text-amber-600 text-2xl mb-2">
+                <i class="fas fa-utensils"></i>
+              </div>
+              <h4 class="font-bold text-gray-900 mb-1">Plats emblématiques</h4>
+              <p class="text-gray-600 text-sm">
+                Romazava, Ravitoto, Lasopy, Varanga
+              </p>
+            </div>
+            
+            <div class="bg-amber-50 p-4 rounded-lg">
+              <div class="text-amber-600 text-2xl mb-2">
+                <i class="fas fa-seedling"></i>
+              </div>
+              <h4 class="font-bold text-gray-900 mb-1">Ingrédients locaux</h4>
+              <p class="text-gray-600 text-sm">
+                Riz, brèdes, zébu, fruits tropicaux
+              </p>
+            </div>
+          </div>
+          
+          <p class="text-gray-700">
+            Chez Sakafo Malagasy, nous nous engageons à préserver et partager ces traditions culinaires ancestrales, tout en les adaptant aux goûts contemporains. Chaque plat que nous servons raconte une histoire et célèbre la richesse de notre patrimoine gastronomique.
+          </p>
+        </div>
+      </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section Contact et Carte -->
+  <section id="contact" class="py-16 bg-amber-50">
+    <div class="container mx-auto px-6">
+      <div class="max-w-6xl mx-auto">
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+          <!-- Formulaire de contact -->
+          <div id="contact-form">
+            <div class="bg-white rounded-2xl shadow-lg p-8">
+              <h2 class="text-3xl font-bold text-amber-800 mb-6">Envoyez-nous un message</h2>
+              
+              <form class="space-y-6">
+                <div class="relative">
+                  <input type="text" id="name" class="input-field w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none" placeholder=" ">
+                  <label for="name" class="floating-label">Votre nom complet</label>
+                </div>
+                
+                <div class="relative">
+                  <input type="email" id="email" class="input-field w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none" placeholder=" ">
+                  <label for="email" class="floating-label">Votre adresse email</label>
+                </div>
+                
+                <div class="relative">
+                  <input type="tel" id="phone" class="input-field w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none" placeholder=" ">
+                  <label for="phone" class="floating-label">Votre numéro de téléphone</label>
+                </div>
+                
+                <div class="relative">
+                  <select id="subject" class="input-field w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none bg-white">
+                    <option value="" disabled selected></option>
+                    <option value="reservation">Réservation</option>
+                    <option value="information">Demande d'information</option>
+                    <option value="recipe">Demande de recette</option>
+                    <option value="other">Autre demande</option>
+                  </select>
+                  <label for="subject" class="floating-label">Sujet de votre message</label>
+                </div>
+                
+                <div class="relative">
+                  <textarea id="message" rows="5" class="input-field w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none" placeholder=" "></textarea>
+                  <label for="message" class="floating-label">Votre message</label>
+                </div>
+                
+                <button type="submit" class="w-full bg-amber-600 text-white py-3 rounded-lg hover:bg-amber-700 transition font-semibold">
+                  <i class="fas fa-paper-plane mr-2"></i>Envoyer le message
+                </button>
+              </form>
+            </div>
+          </div>
+          
+          <!-- Carte et informations de contact -->
+          <div>
+            <div class="mb-8 bg-white rounded-2xl shadow-lg p-8">
+              <h2 class="text-3xl font-bold text-amber-800 mb-6">Nos coordonnées</h2>
+              
+              <div class="space-y-6">
+                <div class="contact-card bg-amber-50 p-5 rounded-lg">
+                  <div class="flex items-start">
+                    <div class="text-amber-600 text-2xl mt-1 mr-4">
+                      <i class="fas fa-map-marker-alt"></i>
+                    </div>
+                    <div>
+                      <h3 class="text-lg font-bold text-gray-900 mb-1">Adresse</h3>
+                      <p class="text-gray-700">
+                        Station FJKM Mangarivotra<br>
+                        Mahajanga, Madagascar
+                      </p>
+                    </div>
+                  </div>
+                </div>
+                
+                <div class="contact-card bg-amber-50 p-5 rounded-lg">
+                  <div class="flex items-start">
+                    <div class="text-amber-600 text-2xl mt-1 mr-4">
+                      <i class="fas fa-phone-alt"></i>
+                    </div>
+                    <div>
+                      <h3 class="text-lg font-bold text-gray-900 mb-1">Téléphone</h3>
+                      <p class="text-gray-700">
+                        +261 34 43 206 61 / +261 32 64 689 80<br>
+                        Lundi au Samedi: 10h - 20h
+                      </p>
+                    </div>
+                  </div>
+                </div>
+                
+                <div class="contact-card bg-amber-50 p-5 rounded-lg">
+                  <div class="flex items-start">
+                    <div class="text-amber-600 text-2xl mt-1 mr-4">
+                      <i class="fas fa-envelope"></i>
+                    </div>
+                    <div>
+                      <h3 class="text-lg font-bold text-gray-900 mb-1">Email</h3>
+                      <p class="text-gray-700">
+                        contact@sakafomalagasy.fr<br>
+                        recettes@sakafomalagasy.fr
+                      </p>
+                    </div>
+                  </div>
+                </div>
+                
+                <div class="contact-card bg-amber-50 p-5 rounded-lg">
+                  <div class="flex items-start">
+                    <div class="text-amber-600 text-2xl mt-1 mr-4">
+                      <i class="fas fa-clock"></i>
+                    </div>
+                    <div>
+                      <h3 class="text-lg font-bold text-gray-900 mb-1">Horaires d'ouverture</h3>
+                      <p class="text-gray-700">
+                        Lundi - Vendredi: 11h30 - 22h<br>
+                        Samedi - Dimanche: 11h - 23h
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section FAQ -->
+  <section class="py-16 bg-white">
+    <div class="container mx-auto px-6">
+      <div class="max-w-4xl mx-auto">
+        <div class="text-center mb-16">
+          <span class="inline-block px-4 py-1 bg-amber-100 text-amber-600 rounded-full text-sm font-semibold mb-3">
+            Questions fréquentes
+          </span>
+          <h2 class="text-4xl font-extrabold text-gray-900 mb-4">
+            Vous avez des questions ?
+          </h2>
+          <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+            Trouvez ci-dessous les réponses aux questions les plus fréquentes sur Sakafo Malagasy
+          </p>
+        </div>
+        
+        <div class="space-y-6">
+          <div class="faq-item border border-gray-200 rounded-2xl overflow-hidden">
+            <button class="faq-question w-full text-left p-6 bg-amber-50 hover:bg-amber-100 transition flex justify-between items-center">
+              <span class="text-lg font-semibold text-gray-900">Proposez-vous des cours de cuisine malgache ?</span>
+              <i class="fas fa-chevron-down text-amber-600"></i>
+            </button>
+            <div class="faq-answer p-6 hidden">
+              <p class="text-gray-700">
+                Oui, nous proposons des ateliers de cuisine traditionnelle malgache tous les samedis matin. Vous apprendrez à préparer des plats emblématiques comme le Romazava, le Ravitoto ou encore les Mofo Gasy. Les ateliers durent 3 heures et incluent un repas dégustation. Réservation obligatoire au moins 48h à l'avance.
+              </p>
+            </div>
+          </div>
+          
+          <div class="faq-item border border-gray-200 rounded-2xl overflow-hidden">
+            <button class="faq-question w-full text-left p-6 bg-amber-50 hover:bg-amber-100 transition flex justify-between items-center">
+              <span class="text-lg font-semibold text-gray-900">Est-ce que vos plats sont adaptés aux régimes végétariens ?</span>
+              <i class="fas fa-chevron-down text-amber-600"></i>
+            </button>
+            <div class="faq-answer p-6 hidden">
+              <p class="text-gray-700">
+                Absolument ! La cuisine malgache offre une grande variété de plats végétariens délicieux. Nous proposons plusieurs options végétariennes comme le "Vary amin'anana" (riz aux brèdes), le "Lasopy" (soupe de légumes) ou encore des salades tropicales. Nous pouvons également adapter certains plats sur demande.
+              </p>
+            </div>
+          </div>
+          
+          <div class="faq-item border border-gray-200 rounded-2xl overflow-hidden">
+            <button class="faq-question w-full text-left p-6 bg-amber-50 hover:bg-amber-100 transition flex justify-between items-center">
+              <span class="text-lg font-semibold text-gray-900">Proposez-vous un service de traiteur pour événements ?</span>
+              <i class="fas fa-chevron-down text-amber-600"></i>
+            </button>
+            <div class="faq-answer p-6 hidden">
+              <p class="text-gray-700">
+                Oui, nous offrons un service de traiteur complet pour vos événements privés ou professionnels. Nous pouvons créer des menus personnalisés allant des buffets malgaches traditionnels aux dîners assis plus formels. Contactez-nous au moins 2 semaines à l'avance pour discuter de vos besoins.
+              </p>
+            </div>
+          </div>
+          
+          <div class="faq-item border border-gray-200 rounded-2xl overflow-hidden">
+            <button class="faq-question w-full text-left p-6 bg-amber-50 hover:bg-amber-100 transition flex justify-between items-center">
+              <span class="text-lg font-semibold text-gray-900">Où puis-je trouver vos produits en boutique ?</span>
+              <i class="fas fa-chevron-down text-amber-600"></i>
+            </button>
+            <div class="faq-answer p-6 hidden">
+              <p class="text-gray-700">
+                Nous proposons une sélection de produits malgaches dans notre boutique sur place : épices, vanille, thé, confitures, et kits pour préparer vos plats préférés à la maison. Vous pouvez également commander en ligne via notre site et nous vous livrons partout en France métropolitaine sous 48h.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="bg-gray-900 text-white py-12">
+    <div class="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-4 gap-8">
+      <div>
+        <h3 class="text-lg font-bold mb-4 text-amber-400">Sakafo Malagasy</h3>
+        <p class="text-gray-400">Célébrons ensemble les richesses de la cuisine traditionnelle malgache.</p>
+        <div class="flex space-x-4 mt-4">
+          <a href="#" class="text-amber-500 hover:text-amber-400">
+            <i class="fab fa-facebook-f"></i>
+          </a>
+          <a href="#" class="text-amber-500 hover:text-amber-400">
+            <i class="fab fa-instagram"></i>
+          </a>
+          <a href="#" class="text-amber-500 hover:text-amber-400">
+            <i class="fab fa-pinterest"></i>
+          </a>
+          <a href="#" class="text-amber-500 hover:text-amber-400">
+            <i class="fab fa-youtube"></i>
+          </a>
+        </div>
+      </div>
+      <div>
+        <h3 class="text-lg font-semibold mb-4">Navigation</h3>
+        <ul class="space-y-2 text-gray-400">
+          <li><a href="./Sakafo.html" class="hover:text-amber-400">Accueil</a></li>
+          <li><a href="#recettes" class="hover:text-amber-400">Recettes</a></li>
+          <li><a href="./apropos.html" class="hover:text-amber-400">À propos</a></li>
+          <li><a href="#contact" class="hover:text-amber-400">Contact</a></li>
+        </ul>
+      </div>
+      <div>
+        <h3 class="text-lg font-semibold mb-4">Recettes populaires</h3>
+        <ul class="space-y-2 text-gray-400">
+          <li><a href="#" class="hover:text-amber-400">Romazava</a></li>
+          <li><a href="#" class="hover:text-amber-400">Ravitoto</a></li>
+          <li><a href="#" class="hover:text-amber-400">Lasopy</a></li>
+          <li><a href="#" class="hover:text-amber-400">Mofo Gasy</a></li>
+        </ul>
+      </div>
+      <div>
+        <h3 class="text-lg font-semibold mb-4">Newsletter</h3>
+        <p class="text-gray-400 mb-4">Recevez nos nouvelles recettes dans votre boîte mail.</p>
+        <form class="flex">
+          <input type="email" placeholder="Votre email" class="px-4 py-2 rounded-l-lg text-gray-800 w-full focus:outline-none">
+          <button class="bg-amber-600 hover:bg-amber-700 px-4 py-2 rounded-r-lg transition" type="submit">
+            <i class="fas fa-paper-plane"></i>
+          </button>
+        </form>
+      </div>
+    </div>
+    <div class="text-center text-sm text-gray-500 mt-10">
+      &copy; 2025 Sakafo Malagasy. Tous droits réservés.
+    </div>
+  </footer>
+
+  <script>
+    // Initialisation de la carte Google Maps
+    function initMap() {
+      // Coordonnées du restaurant (Paris pour l'exemple)
+      const location = { lat: 48.8566, lng: 2.3522 };
+      
+      // Création de la carte
+      const map = new google.maps.Map(document.getElementById('google-map'), {
+        zoom: 15,
+        center: location,
+        styles: [
+          {
+            featureType: 'poi',
+            elementType: 'labels',
+            stylers: [{ visibility: 'off' }]
+          },
+          {
+            featureType: 'transit',
+            elementType: 'labels',
+            stylers: [{ visibility: 'off' }]
+          }
+        ]
+      });
+      
+      // Création du marqueur personnalisé
+      const marker = new google.maps.Marker({
+        position: location,
+        map: map,
+        title: 'Sakafo Malagasy',
+        icon: {
+          path: google.maps.SymbolPath.CIRCLE,
+          scale: 10,
+          fillColor: '#F59E0B',
+          fillOpacity: 1,
+          strokeColor: '#ffffff',
+          strokeWeight: 2
+        }
+      });
+      
+      // InfoWindow pour le marqueur
+      const infoWindow = new google.maps.InfoWindow({
+        content: `
+          <div class="font-semibold text-amber-700">Sakafo Malagasy</div>
+          <div class="text-sm">18 Rue des Saveurs Tropicales</div>
+          <div class="text-sm">75015 Paris</div>
+          <div class="mt-1"><a href="#contact-form" class="text-amber-600 hover:underline">Nous contacter</a></div>
+        `
+      });
+      
+      // Ouverture de l'InfoWindow au clic sur le marqueur
+      marker.addListener('click', () => {
+        infoWindow.open(map, marker);
+      });
+    }
+    
+    // Gestion des FAQ
+    document.querySelectorAll('.faq-question').forEach(question => {
+      question.addEventListener('click', () => {
+        const answer = question.nextElementSibling;
+        const icon = question.querySelector('i');
+        
+        if (answer.classList.contains('hidden')) {
+          answer.classList.remove('hidden');
+          icon.classList.remove('fa-chevron-down');
+          icon.classList.add('fa-chevron-up');
+        } else {
+          answer.classList.add('hidden');
+          icon.classList.remove('fa-chevron-up');
+          icon.classList.add('fa-chevron-down');
+        }
+      });
+    });
+    
+    // Menu mobile
+    const mobileMenuButton = document.getElementById('mobile-menu-button');
+    const mobileMenu = document.getElementById('mobile-menu');
+    
+    mobileMenuButton.addEventListener('click', () => {
+      mobileMenu.classList.toggle('hidden');
+    });
+    
+    // Fermer le menu au clic sur un lien
+    document.querySelectorAll('#mobile-menu a').forEach(link => {
+      link.addEventListener('click', () => {
+        mobileMenu.classList.add('hidden');
+      });
+    });
+  </script>
+
+</body>
+</html>

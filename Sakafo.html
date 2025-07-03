@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sakafo Malagasy - Lovam-bola nentim-paharazana</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+        
+        .animate-fadeIn {
+            animation: fadeIn 0.8s ease-out forwards;
+        }
+        
+        .animate-pulse {
+            animation: pulse 2s infinite;
+        }
+        
+        .recipe-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        }
+        
+        .nav-item::after {
+            content: '';
+            display: block;
+            width: 0;
+            height: 2px;
+            background: #f59e0b;
+            transition: width 0.3s;
+        }
+        
+        .nav-item:hover::after {
+            width: 100%;
+        }
+        
+        .bg-pattern {
+            background-image: radial-gradient(#f3f4f6 1px, transparent 1px);
+            background-size: 20px 20px;
+        }
+    </style>
+</head>
+<body class="font-sans bg-gray-50 bg-pattern">
+    <!-- Barre de navigation -->
+    <nav class="bg-white shadow-md sticky top-0 z-50">
+        <div class="container mx-auto px-6 py-3">
+            <div class="flex justify-between items-center">
+                <!-- Logo -->
+                <div class="flex items-center space-x-2">
+                    <div class="relative">
+                        <svg class="h-10 w-10 rounded-full border-2 border-amber-600 p-1">
+                            <circle cx="20" cy="20" r="18" fill="#F59E0B" />
+                            <text x="20" y="25" text-anchor="middle" fill="white" font-family="Arial" font-size="14">MS</text>
+                        </svg>
+                    </div>
+                    <span class="text-xl font-bold text-amber-600">Sakafo Malagasy</span>
+                </div>
+                
+                <!-- Navigation pour desktop -->
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="#accueil" class="nav-item text-gray-700 hover:text-amber-600 transition">Accueil</a>
+                    <a href="#recettes" class="nav-item text-gray-700 hover:text-amber-600 transition">Recettes</a>
+                    <a href="#apropos" class="nav-item text-gray-700 hover:text-amber-600 transition">À propos</a>
+                    <a href="#contact" class="nav-item text-gray-700 hover:text-amber-600 transition">Contact</a>
+                    <button class="bg-amber-600 text-white px-4 py-2 rounded-md hover:bg-amber-700 transition animate-pulse">
+                        <i class="fas fa-book-open mr-2"></i>Explorer
+                    </button>
+                </div>
+                
+                <!-- Menu mobile -->
+                <div class="md:hidden">
+                    <button id="mobile-menu-button" class="text-gray-700 focus:outline-none">
+                        <i class="fas fa-bars text-2xl"></i>
+                    </button>
+                </div>
+            </div>
+            
+            <!-- Menu mobile dropdown -->
+            <div id="mobile-menu" class="hidden md:hidden mt-4 pb-4">
+                <a href="#accueil" class="block py-2 text-gray-700 hover:text-amber-600">Accueil</a>
+                <a href="#recettes" class="block py-2 text-gray-700 hover:text-amber-600">Recettes</a>
+                <a href="#apropos" class="block py-2 text-gray-700 hover:text-amber-600">À propos</a>
+                <a href="#contact" class="block py-2 text-gray-700 hover:text-amber-600">Contact</a>
+                <button class="mt-2 bg-amber-600 text-white px-4 py-2 rounded-md w-full hover:bg-amber-700">
+                    Explorer
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="accueil" class="relative overflow-hidden">
+        <div class="absolute inset-0 bg-black opacity-40"></div>
+        <img src="https://voyage-madagascar.org/wp-content/uploads/Mofo-ramanonaka-1024x681.jpg" alt="Assortiment de plats malgaches traditionnels présentés sur une table en bois avec vue sur les rizières" class="w-full h-96 object-cover">
+        <div class="absolute inset-0 flex items-center justify-center text-center px-6">
+            <div class="max-w-2xl mx-auto animate-fadeIn">
+                <h1 class="text-4xl md:text-5xl font-bold text-white mb-4"><i class="fas fa-utensils mr-4"></i>Tsiro <span class="text-amber-400">Gasy</span><i class="fas fa-leaf ml-4"></i></h1>
+                <p class="text-xl text-white mb-8">Plongez dans l'univers culinaire unique de Madagascar avec nos recettes traditionnelles authentiques</p>
+                <a href="#recettes" class="inline-block bg-amber-600 text-white px-8 py-3 rounded-lg text-lg font-medium hover:bg-amber-700 transition transform hover:-translate-y-1">
+                    Voir les recettes <i class="fas fa-arrow-down ml-2"></i>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Recettes Section -->
+    <section id="recettes" class="py-16 bg-white">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold text-gray-800 mb-4"><i class="fas fa-mortar-pestle mr-2"></i>Lovam-bola nentim-paharazana<i class="fas fa-bowl-food ml-2"></i></h2>
+                <div class="w-24 h-1 bg-amber-600 mx-auto"></div>
+                <p class="max-w-2xl mx-auto mt-4 text-gray-600">Découvrez notre sélection de plats emblématiques de la cuisine malgache</p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Recette 1 -->
+                <div class="recipe-card bg-white rounded-xl shadow-md overflow-hidden transition duration-300 hover:shadow-xl">
+                    <div class="relative">
+                        <img src="https://storage.canalblog.com/58/65/413504/28711885_o.jpg" alt="Romazava - Ragoût traditionnel malgache avec viande et brèdes mafana dans un bol en terre cuite" class="w-full h-64 object-cover">
+                        <div class="absolute top-4 right-4 bg-amber-600 text-white px-3 py-1 rounded-full text-sm font-medium">
+                            <i class="fas fa-fire mr-1"></i> Populaire
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold text-gray-800 mb-2">Romazava</h3>
+                        <p class="text-gray-600 mb-4">Ragoût traditionnel à base de viande et de brèdes mafana, considéré comme le plat national.</p>
+                        <div class="flex items-center justify-between">
+                            <span class="text-yellow-500">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star-half-alt"></i>
+                            </span>
+                            <button class="text-amber-600 hover:text-amber-700 font-medium flex items-center">
+                                Voir détails <i class="fas fa-chevron-right ml-2"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Recette 2 -->
+                <div class="recipe-card bg-white rounded-xl shadow-md overflow-hidden transition duration-300 hover:shadow-xl">
+                    <div class="relative">
+                        <img src="https://img.over-blog-kiwi.com/1/28/70/26/20171029/ob_06f400_ravitoto.jpg" alt="Ravitoto - Purée de feuilles de manioc accompagnée de viande de porc et de coco" class="w-full h-64 object-cover">
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold text-gray-800 mb-2">Ravitoto sy henakisoa</h3>
+                        <p class="text-gray-600 mb-4">Purée de feuilles de manioc accompagnée de viande de porc et de coco, un classique très nourrissant.</p>
+                        <div class="flex items-center justify-between">
+                            <span class="text-yellow-500">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="far fa-star"></i>
+                            </span>
+                            <button class="text-amber-600 hover:text-amber-700 font-medium flex items-center">
+                                Voir détails <i class="fas fa-chevron-right ml-2"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Recette 3 -->
+                <div class="recipe-card bg-white rounded-xl shadow-md overflow-hidden transition duration-300 hover:shadow-xl">
+                    <div class="relative">
+                        <img src="https://www.vol-direct.net/wp-content/uploads/2022/11/soupe-aux-legumes-en-bol.webp" alt="Lasopy - Soupe de légumes malgache avec morceaux de viande et arômes locaux dans un bol traditionnel" class="w-full h-64 object-cover">
+                        <div class="absolute top-4 right-4 bg-green-600 text-white px-3 py-1 rounded-full text-sm font-medium">
+                            <i class="fas fa-leaf mr-1"></i> Sain
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold text-gray-800 mb-2">Lasopy</h3>
+                        <p class="text-gray-600 mb-4">Soupe de légumes traditionnelle, souvent préparée avec des morceaux de viande et des arômes locaux.</p>
+                        <div class="flex items-center justify-between">
+                            <span class="text-yellow-500">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </span>
+                            <button class="text-amber-600 hover:text-amber-700 font-medium flex items-center">
+                                Voir détails <i class="fas fa-chevron-right ml-2"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="text-center mt-12">
+                <a href="./recettes.html" class="inline-block border-2 border-amber-600 text-amber-600 px-8 py-3 rounded-lg text-lg font-medium hover:bg-amber-600 hover:text-white transition">
+                    Voir toutes les recettes <i class="fas fa-utensils ml-2"></i>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- À propos Section -->
+    <section id="apropos" class="py-16 bg-gray-100">
+        <div class="container mx-auto px-6">
+            <div class="flex flex-col lg:flex-row items-center">
+                <div class="lg:w-1/2 mb-8 lg:mb-0 lg:pr-12">
+                    <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/61b6b32e-1abd-471a-90c2-81b22c967b07.png" alt="Femme malgache préparant un plat traditionnel dans une cuisine avec ustensiles locaux" class="rounded-lg shadow-xl w-full h-auto animate-fadeIn">
+                </div>
+                <div class="lg:w-1/2">
+                    <h2 class="text-3xl font-bold text-gray-800 mb-6"><i class="fas fa-bullseye mr-3"></i>Ny Asantsika<i class="fas fa-heart ml-3 text-amber-600"></i></h2>
+                    <div class="w-24 h-1 bg-amber-600 mb-6"></div>
+                    <p class="text-gray-600 mb-4">
+                        Sakafo Malagasy est dédié à la préservation et à la promotion de la riche tradition culinaire de Madagascar. 
+                        Notre objectif est de rendre cette gastronomie unique accessible à tous, tout en respectant les méthodes traditionnelles de préparation.
+                    </p>
+                    <p class="text-gray-600 mb-6">
+                        Chaque recette sur notre site est le résultat d'un travail minutieux de recherche et de validation auprès des gardiens de ces traditions culinaires à travers les différentes régions de l'île.
+                    </p>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
+                        <div class="flex items-start">
+                            <div class="bg-amber-100 p-3 rounded-full mr-4">
+                                <i class="fas fa-mortar-pestle text-amber-600"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold text-gray-800 mb-1">Authenticité</h4>
+                                <p class="text-gray-600 text-sm">Recettes transmises de génération en génération</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start">
+                            <div class="bg-amber-100 p-3 rounded-full mr-4">
+                                <i class="fas fa-seedling text-amber-600"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold text-gray-800 mb-1">Ingrédients locaux</h4>
+                                <p class="text-gray-600 text-sm">Valorisation des produits du terroir malgache</p>
+                            </div>
+                        </div>
+                    </div>
+                    <a href="apropos.html" class="bg-amber-600 text-white px-6 py-3 rounded-lg font-medium hover:bg-amber-700 transition inline-flex items-center">
+                      En savoir plus <i class="fas fa-arrow-right ml-2"></i>
+                    </a>
+
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-16 bg-white">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold text-gray-800 mb-4"><i class="fas fa-envelope mr-3"></i>Mifandray amintsika<i class="fas fa-phone ml-3"></i></h2>
+                <div class="w-24 h-1 bg-amber-600 mx-auto"></div>
+                <p class="max-w-2xl mx-auto mt-4 text-gray-600">Une question, une suggestion ou envie de partager une recette? Nous sommes à votre écoute.</p>
+            </div>
+            
+            <div class="max-w-4xl mx-auto bg-gray-50 rounded-xl shadow-md overflow-hidden">
+                <div class="md:flex">
+                    <div class="md:w-1/2 p-8 bg-amber-600 text-white">
+                        <h3 class="text-xl font-semibold mb-4">Informations de contact</h3>
+                        <div class="space-y-4">
+                            <div class="flex items-start">
+                                <i class="fas fa-map-marker-alt mt-1 mr-4"></i>
+                                <div>
+                                    <h4 class="font-medium">Adresse</h4>
+                                    <p class="text-amber-100">Lot II M 49 Ambatobe<br>Antananarivo 101, Madagascar</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start">
+                                <i class="fas fa-phone-alt mt-1 mr-4"></i>
+                                <div>
+                                    <h4 class="font-medium">Téléphone</h4>
+                                    <p class="text-amber-100">+261 34 12 345 67</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start">
+                                <i class="fas fa-envelope mt-1 mr-4"></i>
+                                <div>
+                                    <h4 class="font-medium">Email</h4>
+                                    <p class="text-amber-100">contact@sakafomalagasy.mg</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="mt-8">
+                            <h4 class="font-semibold mb-3">Suivez-nous</h4>
+                            <div class="flex space-x-4">
+                                <a href="#" class="bg-amber-700 hover:bg-amber-800 p-2 rounded-full transition">
+                                    <i class="fab fa-facebook-f"></i>
+                                </a>
+                                <a href="#" class="bg-amber-700 hover:bg-amber-800 p-2 rounded-full transition">
+                                    <i class="fab fa-instagram"></i>
+                                </a>
+                                <a href="#" class="bg-amber-700 hover:bg-amber-800 p-2 rounded-full transition">
+                                    <i class="fab fa-github"></i>
+                                </a>
+                                <a href="#" class="bg-amber-700 hover:bg-amber-800 p-2 rounded-full transition">
+                                    <i class="fab fa-linkedin"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="md:w-1/2 p-8">
+                        <form id="contact-form">
+                            <div class="mb-4">
+                                <label for="name" class="block text-gray-700 mb-2">Nom</label>
+                                <input type="text" id="name" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-amber-500">
+                            </div>
+                            <div class="mb-4">
+                                <label for="email" class="block text-gray-700 mb-2">Email</label>
+                                <input type="email" id="email" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-amber-500">
+                            </div>
+                            <div class="mb-4">
+                                <label for="message" class="block text-gray-700 mb-2">Message</label>
+                                <textarea id="message" rows="4" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-amber-500"></textarea>
+                            </div>
+                            <button type="submit" class="w-full bg-amber-600 text-white px-6 py-3 rounded-lg font-medium hover:bg-amber-700 transition">
+                                Envoyer <i class="fas fa-paper-plane ml-2"></i>
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white py-12">
+        <div class="container mx-auto px-6">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <div>
+                    <div class="flex items-center mb-4">
+                        <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/5e5c0d09-d4a3-4e73-8d3b-05c095737859.png" alt="Miniature du logo Sakafo Malagasy" class="h-10 w-10 mr-2">
+                        <span class="text-xl font-bold text-amber-400">Sakafo Malagasy</span>
+                    </div>
+                    <p class="text-gray-400">Partageons ensemble la richesse de la gastronomie malgache.</p>
+                </div>
+                <div>
+                    <h3 class="text-lg font-semibold mb-4">Liens rapides</h3>
+                    <ul class="space-y-2">
+                        <li><a href="#accueil" class="text-gray-400 hover:text-amber-400 transition">Accueil</a></li>
+                        <li><a href="#recettes" class="text-gray-400 hover:text-amber-400 transition">Recettes</a></li>
+                        <li><a href="#apropos" class="text-gray-400 hover:text-amber-400 transition">À propos</a></li>
+                        <li><a href="#contact" class="text-gray-400 hover:text-amber-400 transition">Contact</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="text-lg font-semibold mb-4">Recettes populaires</h3>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-gray-400 hover:text-amber-400 transition">Romazava</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-amber-400 transition">Ravitoto</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-amber-400 transition">Lasopy</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-amber-400 transition">Akoho sy voanio</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="text-lg font-semibold mb-4">Newsletter</h3>
+                    <p class="text-gray-400 mb-4">Abonnez-vous pour recevoir nos dernières recettes.</p>
+                    <form class="flex">
+                        <input type="email" placeholder="Votre email" class="px-4 py-2 rounded-l-lg text-gray-800 w-full focus:outline-none">
+                        <button class="bg-amber-600 hover:bg-amber-700 px-4 py-2 rounded-r-lg transition" type="submit">
+                            <i class="fas fa-paper-plane"></i>
+                        </button>
+                    </form>
+                </div>
+            </div>
+            <div class="border-t border-gray-700 mt-8 pt-8 text-center text-gray-400">
+                <p>© 2023 Sakafo Malagasy. Tous droits réservés.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile menu toggle
+        document.getElementById('mobile-menu-button').addEventListener('click', function() {
+            const menu = document.getElementById('mobile-menu');
+            menu.classList.toggle('hidden');
+        });
+        
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    window.scrollTo({
+                        top: target.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                    
+                    // Close mobile menu if open
+                    const mobileMenu = document.getElementById('mobile-menu');
+                    mobileMenu.classList.add('hidden');
+                }
+            });
+        });
+        
+        // Contact form submission
+        document.getElementById('contact-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Get form values
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const message = document.getElementById('message').value;
+            
+            // Basic validation
+            if (!name || !email || !message) {
+                alert('Veuillez remplir tous les champs');
+                return;
+            }
+            
+            // Here you would typically send the data to a server
+            // For this example, we'll just log it and show a success message
+            console.log('Message envoyé:', { name, email, message });
+            
+            alert('Merci pour votre message! Nous vous répondrons dès que possible.');
+            this.reset();
+        });
+        
+        // Animation on scroll
+        const animateOnScroll = () => {
+            const elements = document.querySelectorAll('.animate-fadeIn');
+            
+            elements.forEach(element => {
+                const elementPosition = element.getBoundingClientRect().top;
+                const screenPosition = window.innerHeight / 1.2;
+                
+                if (elementPosition < screenPosition) {
+                    element.style.opacity = '1';
+                    element.style.transform = 'translateY(0)';
+                }
+            });
+        };
+        
+        window.addEventListener('scroll', animateOnScroll);
+        animateOnScroll(); // Initial check
+        
+        // Recipe card hover effect
+        const recipeCards = document.querySelectorAll('.recipe-card');
+        recipeCards.forEach(card => {
+            card.addEventListener('mouseenter', () => {
+                card.style.transition = 'transform 0.3s ease, box-shadow 0.3s ease';
+            });
+        });
+    </script>
+</body>
+</html>
+

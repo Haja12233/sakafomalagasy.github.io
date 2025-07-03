@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Recettes malgaches | Sakafo Malagasy</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    .modal-content {
+      max-height: 90vh;
+      overflow-y: auto;
+      scrollbar-width: thin;
+      scrollbar-color: #F59E0B #f3f4f6;
+    }
+    
+    .modal-content::-webkit-scrollbar {
+      width: 6px;
+    }
+    
+    .modal-content::-webkit-scrollbar-track {
+      background: #f3f4f6;
+    }
+    
+    .modal-content::-webkit-scrollbar-thumb {
+      background-color: #F59E0B;
+      border-radius: 20px;
+    }
+    
+    .recipe-card:hover .recipe-title {
+      color: #D97706;
+    }
+  </style>
+</head>
+<body class="bg-gray-50 text-gray-800 font-sans">
+
+  <!-- Barre de navigation -->
+  <nav class="bg-white shadow-md sticky top-0 z-50">
+    <div class="container mx-auto px-6 py-3">
+      <div class="flex justify-between items-center">
+        <!-- Logo -->
+        <div class="flex items-center space-x-2">
+          <div class="relative">
+            <svg class="h-10 w-10 rounded-full border-2 border-amber-600 p-1">
+              <circle cx="20" cy="20" r="18" fill="#F59E0B" />
+              <text x="20" y="25" text-anchor="middle" fill="white" font-family="Arial" font-size="14">MS</text>
+            </svg>
+          </div>
+          <span class="text-xl font-bold text-amber-600">Sakafo Malagasy</span>
+        </div>
+        
+        <!-- Navigation pour desktop -->
+        <div class="hidden md:flex items-center space-x-8">
+          <a href="./Sakafo.html" class="nav-item text-gray-700 hover:text-amber-600 transition">Accueil</a>
+          <a href="#recettes" class="nav-item text-gray-700 hover:text-amber-600 transition">Recettes</a>
+          <a href="./apropos.html" class="nav-item text-gray-700 hover:text-amber-600 transition">À propos</a>
+          <a href="./contact.html" class="nav-item text-gray-700 hover:text-amber-600 transition">Contact</a>
+          <button class="bg-amber-600 text-white px-4 py-2 rounded-md hover:bg-amber-700 transition animate-pulse">
+            <i class="fas fa-book-open mr-2"></i>Explorer
+          </button>
+        </div>
+        
+        <!-- Menu mobile -->
+        <div class="md:hidden">
+          <button id="mobile-menu-button" class="text-gray-700 focus:outline-none">
+            <i class="fas fa-bars text-2xl"></i>
+          </button>
+        </div>
+      </div>
+      
+      <!-- Menu mobile dropdown -->
+      <div id="mobile-menu" class="hidden md:hidden mt-4 pb-4">
+        <a href="./Sakafo.html" class="block py-2 text-gray-700 hover:text-amber-600">Accueil</a>
+        <a href="#recettes" class="block py-2 text-gray-700 hover:text-amber-600">Recettes</a>
+        <a href="#apropos" class="block py-2 text-gray-700 hover:text-amber-600">À propos</a>
+        <a href="#contact" class="block py-2 text-gray-700 hover:text-amber-600">Contact</a>
+        <button class="mt-2 bg-amber-600 text-white px-4 py-2 rounded-md w-full hover:bg-amber-700">
+          Explorer
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Liste des recettes -->
+  <section class="py-20 bg-gradient-to-b from-yellow-50 via-white to-yellow-50" id="recettes">
+    <div class="max-w-7xl mx-auto px-6">
+      <h2 class="text-4xl font-extrabold text-center text-amber-600 mb-4">
+        <i class="fas fa-mortar-pestle mr-2"></i>Toutes les recettes malgaches<i class="fas fa-bowl-food ml-2"></i>
+      </h2>
+      <p class="text-center text-gray-600 mb-12 text-lg">Explorez les saveurs authentiques de Madagascar à travers ces plats traditionnels</p>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10">
+
+        <!-- Carte 1: Masikita -->
+        <div class="recipe-card bg-white rounded-3xl shadow-lg hover:shadow-2xl transform hover:-translate-y-1 hover:scale-105 transition duration-300 border border-gray-100">
+          <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTsYmY5ZA4JYFwwrc4oGeKf2ZCJs-oetR9jNA&s" 
+               class="rounded-t-3xl h-60 w-full object-cover" alt="Masikita">
+          <div class="p-6 space-y-3">
+            <h3 class="recipe-title text-xl font-bold text-gray-800 transition-colors">Masikita</h3>
+            <p class="text-gray-600 text-sm">Brochettes grillées marinées, typiques des rues malgaches.</p>
+            <div class="flex items-center justify-between mt-4">
+              <span class="text-yellow-500">
+                <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i>
+              </span>
+              <button onclick="openModal('masikita')" class="group text-amber-600 hover:text-amber-700 font-semibold text-sm flex items-center transition duration-200">
+                Voir détails
+                <i class="fas fa-chevron-right ml-2 group-hover:translate-x-1 transform transition"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Carte 2: Akoho sy voanio -->
+        <div class="recipe-card bg-white rounded-3xl shadow-lg hover:shadow-2xl transform hover:-translate-y-1 hover:scale-105 transition duration-300 border border-gray-100">
+          <img src="https://www.foodandwine.com/thmb/nvMr2JP5nfZF_0t9GugkWOTuxJQ=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/Coconut-Lentils-FT-MAG-RECIPE-0524-8d41c661698841f79f50f3b725e5111b.jpg" 
+               class="rounded-t-3xl h-60 w-full object-cover" alt="Akoho sy voanio">
+          <div class="p-6 space-y-3">
+            <h3 class="recipe-title text-xl font-bold text-gray-800 transition-colors">Akoho sy voanio</h3>
+            <p class="text-gray-600 text-sm">Poulet mijoté au lait de coco, parfumé aux épices douces.</p>
+            <div class="flex items-center justify-between mt-4">
+              <span class="text-yellow-500">
+                <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i>
+              </span>
+              <button onclick="openModal('akoho')" class="group text-amber-600 hover:text-amber-700 font-semibold text-sm flex items-center transition duration-200">
+                Voir détails
+                <i class="fas fa-chevron-right ml-2 group-hover:translate-x-1 transform transition"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Carte 3: Koba -->
+        <div class="recipe-card bg-white rounded-3xl shadow-lg hover:shadow-2xl transform hover:-translate-y-1 hover:scale-105 transition duration-300 border border-gray-100">
+          <img src="https://cms.moov.mg/uploads/Vol_direct_net_16c0d2d8fd.JPG" 
+               class="rounded-t-3xl h-60 w-full object-cover" alt="Koba">
+          <div class="p-6 space-y-3">
+            <h3 class="recipe-title text-xl font-bold text-gray-800 transition-colors">Koba</h3>
+            <p class="text-gray-600 text-sm">Gâteau de banane, riz et cacahuète, cuit dans des feuilles de bananier.</p>
+            <div class="flex items-center justify-between mt-4">
+              <span class="text-yellow-500">
+                <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i>
+              </span>
+              <button onclick="openModal('koba')" class="group text-amber-600 hover:text-amber-700 font-semibold text-sm flex items-center transition duration-200">
+                Voir détails
+                <i class="fas fa-chevron-right ml-2 group-hover:translate-x-1 transform transition"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Carte 4: Mofo Gasy -->
+        <div class="recipe-card bg-white rounded-3xl shadow-lg hover:shadow-2xl transform hover:-translate-y-1 hover:scale-105 transition duration-300 border border-gray-100">
+          <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR5CK6_fuHSsSd5hxmvkvNABED_Wq18buCK_Q&s" 
+               class="rounded-t-3xl h-60 w-full object-cover" alt="Mofo Gasy">
+          <div class="p-6 space-y-3">
+            <h3 class="recipe-title text-xl font-bold text-gray-800 transition-colors">Mofo Gasy</h3>
+            <p class="text-gray-600 text-sm">Beignets sucrés à base de farine de riz et de lait de coco.</p>
+            <div class="flex items-center justify-between mt-4">
+              <span class="text-yellow-500">
+                <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i>
+              </span>
+              <button onclick="openModal('mofogasy')" class="group text-amber-600 hover:text-amber-700 font-semibold text-sm flex items-center transition duration-200">
+                Voir détails
+                <i class="fas fa-chevron-right ml-2 group-hover:translate-x-1 transform transition"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Carte 5: Varanga -->
+        <div class="recipe-card bg-white rounded-3xl shadow-lg hover:shadow-2xl transform hover:-translate-y-1 hover:scale-105 transition duration-300 border border-gray-100">
+          <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSSdXOhaE_5zqcQfWGH6_h7s8rZzECtNFMxsw&s" 
+               class="rounded-t-3xl h-60 w-full object-cover" alt="Varanga">
+          <div class="p-6 space-y-3">
+            <h3 class="recipe-title text-xl font-bold text-gray-800 transition-colors">Varanga</h3>
+            <p class="text-gray-600 text-sm">Bœuf effiloché longuement mijoté pour un goût riche et savoureux.</p>
+            <div class="flex items-center justify-between mt-4">
+              <span class="text-yellow-500">
+                <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i>
+              </span>
+              <button onclick="openModal('varanga')" class="group text-amber-600 hover:text-amber-700 font-semibold text-sm flex items-center transition duration-200">
+                Voir détails
+                <i class="fas fa-chevron-right ml-2 group-hover:translate-x-1 transform transition"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Carte 6: Mofo baolina -->
+        <div class="recipe-card bg-white rounded-3xl shadow-lg hover:shadow-2xl transform hover:-translate-y-1 hover:scale-105 transition duration-300 border border-gray-100">
+          <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSEo9C6Z25_ve6sMvGh3N1F1Kbzb9-rolqlBw&s" 
+               class="rounded-t-3xl h-60 w-full object-cover" alt="Mofo baolina">
+          <div class="p-6 space-y-3">
+            <h3 class="recipe-title text-xl font-bold text-gray-800 transition-colors">Mofo baolina</h3>
+            <p class="text-gray-600 text-sm">Boulettes sucrées frites, croustillantes et moelleuses à l’intérieur.</p>
+            <div class="flex items-center justify-between mt-4">
+              <span class="text-yellow-500">
+                <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i>
+              </span>
+              <button onclick="openModal('mofobaolina')" class="group text-amber-600 hover:text-amber-700 font-semibold text-sm flex items-center transition duration-200">
+                Voir détails
+                <i class="fas fa-chevron-right ml-2 group-hover:translate-x-1 transform transition"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="bg-gray-900 text-white py-12 mt-12" id="contact">
+    <div class="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-4 gap-8">
+      <div>
+        <h3 class="text-lg font-bold mb-4 text-amber-400">Sakafo Malagasy</h3>
+        <p class="text-gray-400">Célébrons ensemble les richesses de la cuisine traditionnelle malgache.</p>
+      </div>
+      <div>
+        <h3 class="text-lg font-semibold mb-4">Navigation</h3>
+        <ul class="space-y-2 text-gray-400">
+          <li><a href="./Sakafo.html" class="hover:text-amber-400">Accueil</a></li>
+          <li><a href="#recettes" class="hover:text-amber-400">Recettes</a></li>
+          <li><a href="./apropos.html" class="hover:text-amber-400">À propos</a></li>
+          <li><a href="#contact" class="hover:text-amber-400">Contact</a></li>
+        </ul>
+      </div>
+      <div>
+        <h3 class="text-lg font-semibold mb-4">Populaires</h3>
+        <ul class="space-y-2 text-gray-400">
+          <li><a href="#" class="hover:text-amber-400">Romazava</a></li>
+          <li><a href="#" class="hover:text-amber-400">Ravitoto</a></li>
+          <li><a href="#" class="hover:text-amber-400">Lasopy</a></li>
+          <li><a href="#" class="hover:text-amber-400">Mofo Gasy</a></li>
+        </ul>
+      </div>
+      <div>
+        <h3 class="text-lg font-semibold mb-4">Newsletter</h3>
+        <p class="text-gray-400 mb-4">Recevez nos nouvelles recettes dans votre boîte mail.</p>
+        <form class="flex">
+          <input type="email" placeholder="Votre email" class="px-4 py-2 rounded-l-lg text-gray-800 w-full focus:outline-none">
+          <button class="bg-amber-600 hover:bg-amber-700 px-4 py-2 rounded-r-lg transition" type="submit">
+            <i class="fas fa-paper-plane"></i>
+          </button>
+        </form>
+      </div>
+    </div>
+    <div class="text-center text-sm text-gray-500 mt-10">
+      &copy; 2025 Sakafo Malagasy. Tous droits réservés.
+    </div>
+  </footer>
+
+  <!-- Modales améliorées -->
+  <!-- Modal Masikita -->
+  <div id="modal-masikita" class="fixed inset-0 z-50 hidden bg-black bg-opacity-50 flex items-center justify-center p-4">
+    <div class="bg-white rounded-2xl w-full max-w-3xl shadow-xl relative">
+      <button onclick="closeModal('masikita')" class="absolute top-4 right-4 text-gray-500 hover:text-red-600 text-2xl font-bold z-10">
+        <i class="fas fa-times"></i>
+      </button>
+      <div class="modal-content p-6">
+        <div class="bg-amber-600 text-white rounded-t-2xl p-6 mb-6">
+          <h2 class="text-3xl font-bold flex items-center">
+            <i class="fas fa-utensils mr-3"></i>Masikita
+          </h2>
+          <p class="mt-2 opacity-90">Brochettes grillées marinées, typiques des rues malgaches</p>
+        </div>
+        
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+          <div>
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTsYmY5ZA4JYFwwrc4oGeKf2ZCJs-oetR9jNA&s" 
+                 alt="Masikita" class="rounded-xl shadow-md w-full h-64 object-cover">
+            <div class="mt-4 flex items-center text-amber-600">
+              <i class="fas fa-clock mr-2"></i>
+              <span>Temps de préparation: 30 min</span>
+            </div>
+            <div class="mt-2 flex items-center text-amber-600">
+              <i class="fas fa-fire mr-2"></i>
+              <span>Temps de cuisson: 15 min</span>
+            </div>
+          </div>
+          
+          <div>
+            <h3 class="text-xl font-semibold mb-3 text-gray-800 border-b-2 border-amber-500 pb-2">Ingrédients</h3>
+            <ul class="list-disc list-inside text-gray-600 space-y-2">
+              <li>500g de viande de zébu (ou bœuf), coupée en cubes</li>
+              <li>3 gousses d'ail, hachées</li>
+              <li>1 cuillère à soupe de gingembre frais râpé</li>
+              <li>3 cuillères à soupe de sauce soja</li>
+              <li>1 cuillère à soupe d'huile</li>
+              <li>Sel et poivre noir fraîchement moulu</li>
+              <li>Brochettes en bois, trempées dans l'eau</li>
+            </ul>
+            
+            <h3 class="text-xl font-semibold mb-3 mt-6 text-gray-800 border-b-2 border-amber-500 pb-2">Préparation</h3>
+            <ol class="list-decimal list-inside text-gray-600 space-y-2">
+              <li>Dans un bol, mélangez l'ail, le gingembre, la sauce soja, l'huile, le sel et le poivre.</li>
+              <li>Ajoutez les cubes de viande et mélangez bien. Couvrez et laissez mariner au réfrigérateur pendant au moins 2 heures (idéalement toute la nuit).</li>
+              <li>Préchauffez le grill à feu moyen-vif.</li>
+              <li>Enfilez les cubes de viande sur les brochettes.</li>
+              <li>Grillez les brochettes pendant 8 à 10 minutes, en les retournant régulièrement, jusqu'à ce qu'elles soient cuites à votre goût.</li>
+              <li>Servez chaud avec une sauce piquante ou du achards.</li>
+            </ol>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal Akoho sy voanio -->
+  <div id="modal-akoho" class="fixed inset-0 z-50 hidden bg-black bg-opacity-50 flex items-center justify-center p-4">
+    <div class="bg-white rounded-2xl w-full max-w-3xl shadow-xl relative">
+      <button onclick="closeModal('akoho')" class="absolute top-4 right-4 text-gray-500 hover:text-red-600 text-2xl font-bold z-10">
+        <i class="fas fa-times"></i>
+      </button>
+      <div class="modal-content p-6">
+        <div class="bg-amber-600 text-white rounded-t-2xl p-6 mb-6">
+          <h2 class="text-3xl font-bold flex items-center">
+            <i class="fas fa-drumstick-bite mr-3"></i>Akoho sy voanio
+          </h2>
+          <p class="mt-2 opacity-90">Poulet mijoté au lait de coco, parfumé aux épices douces</p>
+        </div>
+        
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+          <div>
+            <img src="https://www.foodandwine.com/thmb/nvMr2JP5nfZF_0t9GugkWOTuxJQ=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/Coconut-Lentils-FT-MAG-RECIPE-0524-8d41c661698841f79f50f3b725e5111b.jpg" 
+                 alt="Akoho sy voanio" class="rounded-xl shadow-md w-full h-64 object-cover">
+            <div class="mt-4 flex items-center text-amber-600">
+              <i class="fas fa-clock mr-2"></i>
+              <span>Temps de préparation: 20 min</span>
+            </div>
+            <div class="mt-2 flex items-center text-amber-600">
+              <i class="fas fa-fire mr-2"></i>
+              <span>Temps de cuisson: 45 min</span>
+            </div>
+          </div>
+          
+          <div>
+            <h3 class="text-xl font-semibold mb-3 text-gray-800 border-b-2 border-amber-500 pb-2">Ingrédients</h3>
+            <ul class="list-disc list-inside text-gray-600 space-y-2">
+              <li>1 poulet coupé en morceaux</li>
+              <li>2 oignons, émincés</li>
+              <li>3 gousses d'ail, hachées</li>
+              <li>2 tomates, coupées en dés</li>
+              <li>1 morceau de gingembre (environ 2 cm), râpé</li>
+              <li>400 ml de lait de coco</li>
+              <li>2 cuillères à soupe d'huile</li>
+              <li>Sel, poivre</li>
+              <li>Feuilles de curry (optionnel)</li>
+            </ul>
+            
+            <h3 class="text-xl font-semibold mb-3 mt-6 text-gray-800 border-b-2 border-amber-500 pb-2">Préparation</h3>
+            <ol class="list-decimal list-inside text-gray-600 space-y-2">
+              <li>Dans une cocotte, faites chauffer l'huile et faites revenir les oignons jusqu'à ce qu'ils soient translucides.</li>
+              <li>Ajoutez l'ail et le gingembre, faites revenir 1 minute.</li>
+              <li>Ajoutez les morceaux de poulet et faites dorer de tous les côtés.</li>
+              <li>Incorporez les tomates, le sel, le poivre et les feuilles de curry. Laissez mijoter 5 minutes.</li>
+              <li>Versez le lait de coco et portez à ébullition. Baissez le feu et laissez mijoter à couvert pendant 30 minutes, ou jusqu'à ce que le poulet soit tendre.</li>
+              <li>Servez chaud avec du riz.</li>
+            </ol>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal Koba -->
+  <div id="modal-koba" class="fixed inset-0 z-50 hidden bg-black bg-opacity-50 flex items-center justify-center p-4">
+    <div class="bg-white rounded-2xl w-full max-w-3xl shadow-xl relative">
+      <button onclick="closeModal('koba')" class="absolute top-4 right-4 text-gray-500 hover:text-red-600 text-2xl font-bold z-10">
+        <i class="fas fa-times"></i>
+      </button>
+      <div class="modal-content p-6">
+        <div class="bg-amber-600 text-white rounded-t-2xl p-6 mb-6">
+          <h2 class="text-3xl font-bold flex items-center">
+            <i class="fas fa-leaf mr-3"></i>Koba
+          </h2>
+          <p class="mt-2 opacity-90">Gâteau de banane, riz et cacahuète, cuit dans des feuilles de bananier</p>
+        </div>
+        
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+          <div>
+            <img src="https://cms.moov.mg/uploads/Vol_direct_net_16c0d2d8fd.JPG" 
+                 alt="Koba" class="rounded-xl shadow-md w-full h-64 object-cover">
+            <div class="mt-4 flex items-center text-amber-600">
+              <i class="fas fa-clock mr-2"></i>
+              <span>Temps de préparation: 30 min</span>
+            </div>
+            <div class="mt-2 flex items-center text-amber-600">
+              <i class="fas fa-fire mr-2"></i>
+              <span>Temps de cuisson: 1h30</span>
+            </div>
+          </div>
+          
+          <div>
+            <h3 class="text-xl font-semibold mb-3 text-gray-800 border-b-2 border-amber-500 pb-2">Ingrédients</h3>
+            <ul class="list-disc list-inside text-gray-600 space-y-2">
+              <li>4 bananes mûres</li>
+              <li>200g de farine de riz</li>
+              <li>100g de sucre roux</li>
+              <li>100g de cacahuètes moulues</li>
+              <li>1 pincée de sel</li>
+              <li>Feuilles de bananier (ou papier sulfurisé)</li>
+            </ul>
+            
+            <h3 class="text-xl font-semibold mb-3 mt-6 text-gray-800 border-b-2 border-amber-500 pb-2">Préparation</h3>
+            <ol class="list-decimal list-inside text-gray-600 space-y-2">
+              <li>Écrasez les bananes en purée.</li>
+              <li>Dans un saladier, mélangez la farine de riz, le sucre, les cacahuètes moulues et le sel.</li>
+              <li>Ajoutez la purée de bananes et mélangez jusqu'à obtenir une pâte homogène.</li>
+              <li>Découpez les feuilles de bananier en carrés d'environ 20 cm de côté. Passez-les rapidement à la flamme pour les assouplir.</li>
+              <li>Déposez 2 à 3 cuillères à soupe de pâte au centre de chaque feuille. Repliez la feuille pour former un paquet rectangulaire.</li>
+              <li>Faites cuire à la vapeur pendant 1h30. Laissez refroidir avant de déguster.</li>
+            </ol>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modales pour les autres recettes (structure similaire) -->
+  <!-- ... (Mofo Gasy, Varanga, Mofo baolina) ... -->
+
+  <script>
+    // Gestion des modales
+    function openModal(id) {
+      document.getElementById(`modal-${id}`).classList.remove('hidden');
+      document.body.classList.add('overflow-hidden');
+    }
+    
+    function closeModal(id) {
+      document.getElementById(`modal-${id}`).classList.add('hidden');
+      document.body.classList.remove('overflow-hidden');
+    }
+    
+    // Fermer la modal en cliquant à l'extérieur
+    window.onclick = function(event) {
+      document.querySelectorAll('[id^="modal-"]').forEach(modal => {
+        if (event.target === modal) {
+          const id = modal.id.replace('modal-', '');
+          closeModal(id);
+        }
+      });
+    }
+    
+    // Menu mobile
+    const mobileMenuButton = document.getElementById('mobile-menu-button');
+    const mobileMenu = document.getElementById('mobile-menu');
+    
+    mobileMenuButton.addEventListener('click', () => {
+      mobileMenu.classList.toggle('hidden');
+    });
+    
+    // Fermer le menu au clic sur un lien
+    document.querySelectorAll('#mobile-menu a').forEach(link => {
+      link.addEventListener('click', () => {
+        mobileMenu.classList.add('hidden');
+      });
+    });
+  </script>
+
+</body>
+</html>
